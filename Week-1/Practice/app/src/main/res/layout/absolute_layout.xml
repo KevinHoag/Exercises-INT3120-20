@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout>
+<!--Từ Android API level 30 trở đi, Absolute Layout không còn được hỗ trợ
+vì nó không linh hoạt và có thể gây ra vấn đề về hiển thị trên các
+thiết bị với kích thước màn hình khác nhau--></AbsoluteLayout>
