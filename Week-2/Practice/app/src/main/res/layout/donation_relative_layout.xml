@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="30dp"
+        android:background="#3252a8">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:text="Donation 1.5"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/welcome_homer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:text="Welcome Homer"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/headerLayout">
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/radioPickerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:paddingTop="50dp"
+        android:layout_below="@+id/welcome_homer">
+
+        <RelativeLayout
+            android:id="@+id/radioLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/please_give_generously"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please Give Generously">
+            </TextView>
+
+            <RadioGroup
+                android:layout_below="@id/please_give_generously"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#3252a8"
+                    android:minHeight="48dp"
+                    android:text="Paypal" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#3252a8"
+                    android:minHeight="48dp"
+                    android:text="Direct" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <NumberPicker
+            android:id="@+id/picker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarHorizontal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        android:paddingTop="10dp"
+        android:indeterminate="false"
+        android:minHeight="2dp"
+        android:minWidth="200dp"
+        android:max="100"
+        android:progress="20"
+        android:progressBackgroundTint="@android:color/darker_gray"
+        android:progressTint="#3252a8"
+        android:layout_below="@id/radioPickerLayout">
+    </ProgressBar>
+
+    <RelativeLayout
+        android:id="@+id/amountLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:layout_below="@id/progressBarHorizontal">
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:text="Amount">
+        </TextView>
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:backgroundTint="#3252a8"
+            android:layout_toEndOf="@+id/amount">
+        </EditText>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:layout_below="@+id/amountLayout">
+
+        <Button
+            android:id="@+id/donate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DONATE"
+            android:layout_weight="1"
+            android:textStyle="bold"></Button>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity='center'
+            android:layout_weight="9"
+            android:layout_toEndOf="@id/donate_button">
+            <TextView
+                android:id="@+id/total_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total so Far: $"></TextView>
+            <TextView
+                android:layout_toEndOf="@id/total_text"
+                android:id="@+id/total_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"></TextView>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

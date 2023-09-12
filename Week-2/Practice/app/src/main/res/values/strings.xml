@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="essentias_of_developing_android_5_0">Essentias of Developing Android 5.0</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="your_ordering">Your ordering</string>
+    <string name="sms_place_your_order">SMS - Place YOUR ORDER</string>
+    <string name="exit">EXIT</string>
+    <string name="enter_your_name">Enter your Name</string>
+</resources>
