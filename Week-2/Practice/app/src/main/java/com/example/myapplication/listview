@@ -1,0 +1,30 @@
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.activity.ComponentActivity
+
+
+class MainActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.list_display)
+
+        val mobileArray = arrayOf("Android", "iOS", "Windows", "Blackberry")
+
+        val adapter = ArrayAdapter(
+            this,
+            R.layout.list_view,
+            mobileArray
+        )
+
+        val listView: ListView = findViewById(R.id.mobile_list)
+
+        listView.adapter = adapter
+    }
+}
+
+
+
+

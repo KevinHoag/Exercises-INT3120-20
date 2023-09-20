@@ -6,4 +6,6 @@
     <string name="sms_place_your_order">SMS - Place YOUR ORDER</string>
     <string name="exit">EXIT</string>
     <string name="enter_your_name">Enter your Name</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_main3">MainActivity3</string>
 </resources>

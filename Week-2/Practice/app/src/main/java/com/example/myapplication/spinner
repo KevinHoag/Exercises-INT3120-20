@@ -1,0 +1,59 @@
+package com.example.myapplication
+import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.activity.ComponentActivity
+
+class MainActivity : ComponentActivity() {
+
+    private val items = arrayOf(
+        "Android", "IPhone", "WindowsMobile",
+        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X"
+    )
+
+    private lateinit var selection: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.spinner)
+
+        selection = findViewById(R.id.selection)
+        val spin = findViewById<Spinner>(R.id.spinner)
+
+        val aa = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            items
+        )
+
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spin.adapter = aa
+        spin.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                onSpinnerItemSelected(parent, view, position, id)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                if (parent != null) {
+                    onSpinnerNothingSelected(parent)
+                }
+            }
+        }
+    }
+
+    fun onSpinnerItemSelected(parent: AdapterView<*>, v: View?, position: Int, id: Long) {
+        selection.text = items[position]
+    }
+
+    fun onSpinnerNothingSelected(parent: AdapterView<*>) {
+        selection.text = ""
+    }
+}

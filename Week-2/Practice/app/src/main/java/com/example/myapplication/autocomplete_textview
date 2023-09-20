@@ -1,0 +1,50 @@
+package com.example.myapplication
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.TextView
+import androidx.activity.ComponentActivity
+
+class MainActivity : ComponentActivity(), TextWatcher {
+
+    private val items = arrayOf(
+        "Android", "IPhone", "WindowsMobile",
+        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X"
+    )
+
+    private var selection: TextView? = null
+    private var edit: AutoCompleteTextView? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.autocomplete_textview)
+
+        selection = findViewById(R.id.selection)
+        edit = findViewById(R.id.edit)
+
+        edit?.addTextChangedListener(this)
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            items
+        )
+        edit?.setAdapter(adapter)
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        selection?.text = edit?.text.toString()
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+    override fun afterTextChanged(s: Editable?) {
+        val text = s.toString()
+        if (text.isNotEmpty()) {
+            selection?.text = "Selected: $text"
+        } else {
+            selection?.text = ""
+        }
+    }
+}

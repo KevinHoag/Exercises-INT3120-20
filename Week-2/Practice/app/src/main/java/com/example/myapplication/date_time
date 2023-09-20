@@ -1,0 +1,60 @@
+package com.example.myapplication
+
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.activity.ComponentActivity
+import java.text.DateFormat
+import java.util.Calendar
+
+class MainActivity : ComponentActivity() {
+    var fmtDateAndTime = DateFormat.getDateTimeInstance()
+    var lblDateAndTime: TextView? = null
+    var myCalendar = Calendar.getInstance()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.date_time)
+
+
+        lblDateAndTime = findViewById(R.id.lblDateAndTime)
+        val btnDate: Button = findViewById(R.id.btnDate)
+        btnDate.setOnClickListener {
+            DatePickerDialog(
+                this@MainActivity, d, myCalendar[Calendar.YEAR],
+                myCalendar[Calendar.MONTH], myCalendar[Calendar.DAY_OF_MONTH]
+            ).show()
+        }
+        val btnTime: Button = findViewById(R.id.btnTime)
+        btnTime.setOnClickListener {
+            TimePickerDialog(
+                this@MainActivity, t,
+                myCalendar[Calendar.HOUR_OF_DAY],
+                myCalendar[Calendar.MINUTE], true
+            ).show()
+        }
+        updateLabel()
+    }
+
+    private fun updateLabel() {
+        val dateTimeString = fmtDateAndTime.format(myCalendar.time)
+        lblDateAndTime!!.text = dateTimeString
+    }
+
+    var d =
+        OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            myCalendar[Calendar.YEAR] = year
+            myCalendar[Calendar.MONTH] = monthOfYear
+            myCalendar[Calendar.DAY_OF_MONTH] = dayOfMonth
+            updateLabel()
+        }
+    var t =
+        OnTimeSetListener { view, hourOfDay, minute ->
+            myCalendar[Calendar.HOUR_OF_DAY] = hourOfDay
+            myCalendar[Calendar.MINUTE] = minute
+            updateLabel()
+        }
+}
