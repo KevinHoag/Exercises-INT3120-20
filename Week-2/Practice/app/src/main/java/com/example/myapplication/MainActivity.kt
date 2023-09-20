@@ -1,76 +1,115 @@
-package com.example.myapplication
+package com.example.date_time
 
-import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Bundle
 import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.TextView
-import androidx.activity.ComponentActivity
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.myapplication.ui.theme.MyApplicationTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
+import java.text.DateFormat
+import java.util.Calendar
 
-class MainActivity : ComponentActivity() {
-    @SuppressLint("SetTextI18n", "MissingInflatedId")
+class MainActivity : AppCompatActivity() {
+    var fmtDateAndTime = DateFormat.getDateTimeInstance()
+    var lblDateAndTime: TextView? = null
+    var myCalendar = Calendar.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.order_constraint_layout)
+        setContentView(R.layout.donation_table_layout)
+    }
+}
+//        lblDateAndTime = findViewById(R.id.lblDateAndTime)
+//        val btnDate: Button = findViewById(R.id.btnDate)
+//        btnDate.setOnClickListener {
+//            DatePickerDialog(
+//                this@MainActivity, d, myCalendar[Calendar.YEAR],
+//                myCalendar[Calendar.MONTH], myCalendar[Calendar.DAY_OF_MONTH]
+//            ).show()
+//        }
+//        val btnTime: Button = findViewById(R.id.btnTime)
+//        btnTime.setOnClickListener {
+//            TimePickerDialog(
+//                this@MainActivity, t,
+//                myCalendar[Calendar.HOUR_OF_DAY],
+//                myCalendar[Calendar.MINUTE], true
+//            ).show()
+//        }
+//        updateLabel()
+//    }
+//
+//    private fun updateLabel() {
+//        val dateTimeString = fmtDateAndTime.format(myCalendar.time)
+//        lblDateAndTime!!.text = dateTimeString
+//    }
+//
+//    var d =
+//        OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+//            myCalendar[Calendar.YEAR] = year
+//            myCalendar[Calendar.MONTH] = monthOfYear
+//            myCalendar[Calendar.DAY_OF_MONTH] = dayOfMonth
+//            updateLabel()
+//        }
+//    var t =
+//        OnTimeSetListener { view, hourOfDay, minute ->
+//            myCalendar[Calendar.HOUR_OF_DAY] = hourOfDay
+//            myCalendar[Calendar.MINUTE] = minute
+//            updateLabel()
+//        }
 
 //         Dành cho order layout
-        val name = findViewById<EditText>(R.id.enter_your_name)
-        val phoneNumber = findViewById<EditText>(R.id.enter_your_phone_number)
-        val cheeseButton = findViewById<RadioButton>(R.id.cheese)
-        val cheeseX2Button = findViewById<RadioButton>(R.id.cheese_x_2)
-        val noneButton = findViewById<RadioButton>(R.id.none)
-        val squareButton = findViewById<RadioButton>(R.id.square)
-        val roundButton = findViewById<RadioButton>(R.id.round)
-        val pepperoniButton = findViewById<CheckBox>(R.id.pepperoni)
-        val mushroomButton = findViewById<CheckBox>(R.id.mushroom)
-        val veggiesButton = findViewById<CheckBox>(R.id.veggies)
-        val orderText = findViewById<TextView>(R.id.order_text)
-        val orderButton = findViewById<Button>(R.id.place_order)
-
-        orderButton.setOnClickListener{
-                var tempOrderText: String = ""
-
-            if (name.text.isNotEmpty()) {
-                tempOrderText = tempOrderText + name.text + '\n'
-            }
-                if (phoneNumber.text.isNotEmpty()) {
-                    tempOrderText = tempOrderText + phoneNumber.text + '\n'
-                }
-                if (cheeseButton.isChecked) {
-                    tempOrderText = tempOrderText + "Cheese" + '\n'
-                }
-                if (cheeseX2Button.isChecked) {
-                    tempOrderText = tempOrderText + "2 x Cheese" + '\n'
-                }
-                if (noneButton.isChecked) {
-                    tempOrderText = tempOrderText + "None" + '\n'
-                }
-                if (squareButton.isChecked) {
-                    tempOrderText = tempOrderText + "Square" + '\n'
-                }
-                if (roundButton.isChecked) {
-                    tempOrderText = tempOrderText + "Round" + '\n'
-                }
-                if (pepperoniButton.isChecked) {
-                    tempOrderText = tempOrderText + "Pepperoni" + '\n'
-                }
-                if (mushroomButton.isChecked) {
-                    tempOrderText = tempOrderText + "Mushroom" + '\n'
-                }
-                if (veggiesButton.isChecked) {
-                    tempOrderText = tempOrderText + "Veggies" + '\n'
-                }
-                orderText.text = tempOrderText
-
-        }
-        }
+//        val name = findViewById<EditText>(R.id.enter_your_name)
+//        val phoneNumber = findViewById<EditText>(R.id.enter_your_phone_number)
+//        val cheeseButton = findViewById<RadioButton>(R.id.cheese)
+//        val cheeseX2Button = findViewById<RadioButton>(R.id.cheese_x_2)
+//        val noneButton = findViewById<RadioButton>(R.id.none)
+//        val squareButton = findViewById<RadioButton>(R.id.square)
+//        val roundButton = findViewById<RadioButton>(R.id.round)
+//        val pepperoniButton = findViewById<CheckBox>(R.id.pepperoni)
+//        val mushroomButton = findViewById<CheckBox>(R.id.mushroom)
+//        val veggiesButton = findViewById<CheckBox>(R.id.veggies)
+//        val orderText = findViewById<TextView>(R.id.order_text)
+//        val orderButton = findViewById<Button>(R.id.place_order)
+//
+//        orderButton.setOnClickListener{
+//                var tempOrderText: String = ""
+//
+//            if (name.text.isNotEmpty()) {
+//                tempOrderText = tempOrderText + name.text + '\n'
+//            }
+//                if (phoneNumber.text.isNotEmpty()) {
+//                    tempOrderText = tempOrderText + phoneNumber.text + '\n'
+//                }
+//                if (cheeseButton.isChecked) {
+//                    tempOrderText = tempOrderText + "Cheese" + '\n'
+//                }
+//                if (cheeseX2Button.isChecked) {
+//                    tempOrderText = tempOrderText + "2 x Cheese" + '\n'
+//                }
+//                if (noneButton.isChecked) {
+//                    tempOrderText = tempOrderText + "None" + '\n'
+//                }
+//                if (squareButton.isChecked) {
+//                    tempOrderText = tempOrderText + "Square" + '\n'
+//                }
+//                if (roundButton.isChecked) {
+//                    tempOrderText = tempOrderText + "Round" + '\n'
+//                }
+//                if (pepperoniButton.isChecked) {
+//                    tempOrderText = tempOrderText + "Pepperoni" + '\n'
+//                }
+//                if (mushroomButton.isChecked) {
+//                    tempOrderText = tempOrderText + "Mushroom" + '\n'
+//                }
+//                if (veggiesButton.isChecked) {
+//                    tempOrderText = tempOrderText + "Veggies" + '\n'
+//                }
+//                orderText.text = tempOrderText
+//
+//        }
+//        }
 
 
 // Dành cho donation layout
@@ -89,21 +128,5 @@ class MainActivity : ComponentActivity() {
 //            }
 //
 //        }
-    }
 
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        Greeting("Android")
-    }
-}

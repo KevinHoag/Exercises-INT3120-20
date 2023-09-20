@@ -13,7 +13,7 @@
         android:padding="15dp"
         android:background="#3252a8"
         android:textColor="@color/white"
-        android:textSize="23sp"
+        android:textSize="23"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +206,7 @@
         android:layout_height="wrap_content"
         android:buttonTint="#FF3FA4"
         android:text="Cheese"
-        tools:ignore="HardcodedText,TouchTargetSizeCheck"
+        tools:ignore="HardcodedText,MissingConstraints,TouchTargetSizeCheck"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="164dp" />
 
