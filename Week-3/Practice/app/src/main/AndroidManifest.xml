@@ -24,7 +24,7 @@
             android:exported="false"
             android:label="Reply Screen" />
         <activity
-            android:name="com.example.practice.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="Menu Demo">
             <intent-filter>

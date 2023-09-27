@@ -1,4 +1,4 @@
-package com.example.practice
+package com.example.myapplication
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,8 +13,8 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.R
-
+import com.example.practice.MainActivity2
+import com.example.practice.MainActivity4
 
 class MainActivity : AppCompatActivity() {
 

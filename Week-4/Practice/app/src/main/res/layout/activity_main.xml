@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textSize="30sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/silent_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Silent Mode">
+        </Button>
+        <TextView
+            android:id="@+id/silent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="True"
+            android:textSize="20sp"></TextView>
+    </LinearLayout>
+    <Button
+        android:id="@+id/write_file_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to write file">
+    </Button>
+    <Button
+        android:id="@+id/update_file_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to update text">
+    </Button>
+    <TextView
+        android:id="@+id/input_file_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:textSize="20sp"></TextView>
+    <TextView
+        android:id="@+id/readable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:textSize="20sp"></TextView>
+    <TextView
+        android:id="@+id/writable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:textSize="20sp"></TextView>
+    <Button
+        android:id="@+id/upload_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to upload image">
+    </Button>
+    <Button
+        android:id="@+id/delete_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to delete image">
+    </Button>
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ImageView>
+
+    <Button
+        android:id="@+id/insert_sqLite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to insert data">
+    </Button>
+    <Button
+        android:id="@+id/delete_sqLite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click to delete data">
+    </Button>
+    <TextView
+        android:id="@+id/sqLite_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:textSize="20sp"></TextView>
+</LinearLayout>
