@@ -1,33 +1,83 @@
+package com.example.myapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.UserDictionary;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        insertWordIntoUserDictionary("abc");
+
+        TextView mSearchWord = findViewById(R.id.search_edit_Text);
+        Button mSearchButton = findViewById(R.id.search_button);
+
+        View.OnClickListener searchOnClickListener = v -> searchWord(mSearchWord.getText().toString());
+        mSearchButton.setOnClickListener(searchOnClickListener);
+    }
+
+    public void searchWord(String word) {
         String[] mProjection = {
                 UserDictionary.Words._ID,
                 UserDictionary.Words.WORD,
                 UserDictionary.Words.LOCALE
         };
 
-        TextView mSearchWord = findViewById(R.id.search_edit_Text);
-        String mSearchString = mSearchWord.getText().toString();
-
         String mSelectionClause = UserDictionary.Words.WORD + " like ?";
-        String[] mSelectionArgs = {"a"};
-        mSelectionArgs[0] = "%" + mSearchString + "%";
+        String[] mSelectionArgs = {"%" + word + "%"};
 
         String mSortOrder = "_id asc";
 
         Cursor mCursor = getContentResolver().query(
                 UserDictionary.Words.CONTENT_URI,
                 mProjection,
-                null,
-                null,
+                mSelectionClause,
+                mSelectionArgs,
                 mSortOrder
         );
 
-        Integer index = mCursor.getColumnIndex(UserDictionary.Words.WORD);
-        Log.d("dsasdaads", mCursor.getString(index));
+
         if (mCursor != null) {
+            Integer t = mCursor.getColumnIndex(word);
+            Log.d("ddd", t.toString());
+            int index = mCursor.getColumnIndex(UserDictionary.Words.WORD);
             while (mCursor.moveToNext()) {
                 String newWord = mCursor.getString(index);
                 Log.d("test", newWord);
             }
+            mCursor.close();
+        } else {
+            Log.d("test", "Cursor is null");
         }
+    }
+
+    public void insertWordIntoUserDictionary(String word) {
+        ContentValues values = new ContentValues();
+        values.put(UserDictionary.Words.WORD, word);
+        values.put(UserDictionary.Words.LOCALE, "en_US");
+
+        Uri mNewUri;
+        mNewUri = getContentResolver().insert(UserDictionary.Words.CONTENT_URI, values);
+        if (mNewUri == null) {
+            Log.d("asdasd", String.valueOf(getContentResolver().insert(UserDictionary.Words.CONTENT_URI, values)));
+        }
+    }
+}

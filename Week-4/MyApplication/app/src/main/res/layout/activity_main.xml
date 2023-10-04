@@ -16,16 +16,49 @@
         android:paddingHorizontal="20dp"
         android:orientation="vertical">
         <EditText
-            android:id="@+id/search_edit_Text"
+            android:id="@+id/first_edit_Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
+        <EditText
+            android:id="@+id/second_edit_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </EditText>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"></Button>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/show_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show"></Button>
         <Button
             android:layout_gravity="center"
             android:id="@+id/search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search"></Button>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"></Button>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"></Button>
+        <TextView
+            android:id="@+id/text_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
     </LinearLayout>
 
 </LinearLayout>
