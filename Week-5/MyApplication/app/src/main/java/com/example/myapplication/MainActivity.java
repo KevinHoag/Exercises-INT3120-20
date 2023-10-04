@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -45,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener onDeleteButtonClicked = v -> onClickDeleteDetails(v);
         deleteButton.setOnClickListener(onDeleteButtonClicked);
 
-        String message = "Xin chào từ MainActivity";
-        Intent intent = new Intent(this, HelloIntentService.class);
-        intent.putExtra("message", message);
-        startService(intent);
     }
 
     @Override
@@ -60,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case 1000010:
-                Toast.makeText(this, "Item 1 selected", Toast.LENGTH_SHORT).show();
+            case 2131230949:
                 break;
-            case 1000009:
-                Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
+            case 2131230950:
+                Intent intent = new Intent(this, MainActivity2.class);
+                startActivity(intent);
                 break;
         }
         return true;

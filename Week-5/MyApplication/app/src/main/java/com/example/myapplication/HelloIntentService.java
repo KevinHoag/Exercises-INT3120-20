@@ -18,13 +18,8 @@ public class HelloIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            Thread.currentThread().interrupt();
-//        }
         Log.d("asdas", intent.getStringExtra("message"));
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, App.CHANEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Tiêu đề thông báo")
                 .setContentText("Hello World")
