@@ -1,12 +1,8 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -16,17 +12,23 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity2 extends AppCompatActivity {
-    final MyBroadcastReceiver mMyBroadcastReceiver = new MyBroadcastReceiver();
-    TextView title;
+    private MyBroadcastReceiver myBroadcastReceiver;
+    private TextView title;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         title = findViewById(R.id.title);
+        myBroadcastReceiver = new MyBroadcastReceiver(title);
+
+        registerReceiver(
+                myBroadcastReceiver,
+                new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+        );
         registerForContextMenu(title);
-        registerReceiver(mMyBroadcastReceiver,
+
+        registerReceiver(myBroadcastReceiver,
                 new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED)
         );
     }
@@ -50,30 +52,29 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(myBroadcastReceiver);
+        Log.d("Unregister status", "Successfull");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(myBroadcastReceiver);
+        Log.d("Unregister status", "Successfull");
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mMyBroadcastReceiver);
-    }
-
-    private boolean isAirplaneModeOn() {
-        return Settings.Global.getInt(
-                getContentResolver(),
-                Settings.Global.AIRPLANE_MODE_ON,
-                0
-        ) != 0;
-    }
-
-    private class MyBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent != null && Intent.ACTION_AIRPLANE_MODE_CHANGED.equals(intent.getAction())) {
-                boolean isTurnedOn = isAirplaneModeOn();
-                updateTextView(isTurnedOn);
-            }
+        try {
+            unregisterReceiver(myBroadcastReceiver);
+            Log.d("Unregister status", "Successfull");
+            Log.d("BroadReceiver", myBroadcastReceiver.toString());
+        } catch (Exception e) {
+            Log.d("Unregister status", "Unsuccessfull");
         }
-    }
 
-    private void updateTextView(boolean isTurnedOn) {
-        title.setText("Airplane Mode is " + (isTurnedOn ? "on" : "off"));
     }
 }

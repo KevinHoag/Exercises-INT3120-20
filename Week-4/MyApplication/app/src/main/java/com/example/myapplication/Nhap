@@ -1,0 +1,33 @@
+
+
+        String[] mProjection = {
+                UserDictionary.Words._ID,
+                UserDictionary.Words.WORD,
+                UserDictionary.Words.LOCALE
+        };
+
+        TextView mSearchWord = findViewById(R.id.search_edit_Text);
+        String mSearchString = mSearchWord.getText().toString();
+
+        String mSelectionClause = UserDictionary.Words.WORD + " like ?";
+        String[] mSelectionArgs = {"a"};
+        mSelectionArgs[0] = "%" + mSearchString + "%";
+
+        String mSortOrder = "_id asc";
+
+        Cursor mCursor = getContentResolver().query(
+                UserDictionary.Words.CONTENT_URI,
+                mProjection,
+                null,
+                null,
+                mSortOrder
+        );
+
+        Integer index = mCursor.getColumnIndex(UserDictionary.Words.WORD);
+        Log.d("dsasdaads", mCursor.getString(index));
+        if (mCursor != null) {
+            while (mCursor.moveToNext()) {
+                String newWord = mCursor.getString(index);
+                Log.d("test", newWord);
+            }
+        }

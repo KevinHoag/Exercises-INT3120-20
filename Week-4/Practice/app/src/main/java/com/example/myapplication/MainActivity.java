@@ -34,6 +34,8 @@ import java.io.InputStreamReader;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    String filename = "nighttt.jpeg";
     public MainActivity() throws FileNotFoundException {
     }
 
@@ -115,9 +117,13 @@ public class MainActivity extends AppCompatActivity {
         TextView writable = (TextView) findViewById(R.id.writable);
         if (isExternalStorageReadable()) {
             readable.setText("Readable");
+        } else {
+            readable.setText("Unreadable");
         }
         if (isExternalStorageWritable()) {
             writable.setText("Writable");
+        } else {
+            writable.setText("Unwritable");
         }
 
         try {
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                String fileName = "MyPictures/night.jpeg";
+                String fileName = "MyPictures/" + filename;
                 File imageFile = new File(Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES), fileName);
                 ImageView imageView = (ImageView) findViewById(R.id.image_view);
@@ -201,8 +207,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
-
+    void writeFileInput() throws Exception {
+        String FILENAME = "hello.txt";
+        String string = "Hello World1111231211";
+        FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+        fos.write(string.getBytes());
+        fos.close();
+    }
     void updateFileInput() throws Exception {
         try {
             File file = this.getDir("hello.txt", Context.MODE_PRIVATE);
@@ -222,14 +233,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             throw new Exception(e);
         }
-    }
-
-    void writeFileInput() throws Exception {
-        String FILENAME = "hello.txt";
-        String string = "Hello World";
-        FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-        fos.write(string.getBytes());
-        fos.close();
     }
 
     public Boolean isExternalStorageWritable() {
@@ -254,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Error", "Directory not created");
             }
         }
-        File outputImage = new File(outputDirectory, "night.jpeg");
+        File outputImage = new File(outputDirectory, filename);
         try {
             FileOutputStream outputStream = new FileOutputStream(outputImage);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
@@ -267,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void deleteExternalStoragePrivateFile() {
-        String fileName = "MyPictures/night.jpeg";
+        String fileName = "MyPictures/" + filename;
         File imageFile = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), fileName);
         if (imageFile != null) {
