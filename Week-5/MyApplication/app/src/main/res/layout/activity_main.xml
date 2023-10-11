@@ -33,6 +33,12 @@
             android:text="Add"></Button>
         <Button
             android:layout_gravity="center"
+            android:id="@+id/add_many_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Many"></Button>
+        <Button
+            android:layout_gravity="center"
             android:id="@+id/show_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +55,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Update"></Button>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/update_many_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Many"></Button>
         <Button
             android:layout_gravity="center"
             android:id="@+id/delete_button"

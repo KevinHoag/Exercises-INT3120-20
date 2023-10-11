@@ -86,6 +86,33 @@ public class MyContentProvider extends ContentProvider {
     }
 
     @Override
+    public int bulkInsert(Uri uri, ContentValues[] values) {
+        int numInserted = 0;
+        try {
+            db.beginTransaction();
+
+            for (ContentValues value : values) {
+                long rowID = db.insert(TABLE_NAME, null, value);
+                if (rowID != -1) {
+                    numInserted++;
+                }
+            }
+
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+
+        if (numInserted > 0) {
+            Uri _uri = ContentUris.withAppendedId(CONTENT_URI, numInserted);
+            getContext().getContentResolver().notifyChange(_uri, null);
+            return numInserted;
+        } else {
+            throw new SQLiteException("Failed to insert records into " + uri);
+        }
+    }
+
+    @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         int count = 0;
